@@ -1,0 +1,16 @@
+
+# Expanded name to use for application
+full_name:emu8086
+
+# Settings for the Python version
+executable:/home/julien/Documents/localrepositories/boredaproject/emu8086/run_program_test.py
+interpreter:python
+
+[view_program]
+*:gedit
+[end]
+
+
+# Naming scheme to use for files for stdin,stdout and stderr
+filename_convention_scheme:standard
+
