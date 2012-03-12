@@ -3,8 +3,9 @@
 full_name:emu8086
 
 # Settings for the Python version
-executable:/home/julien/Documents/localrepositories/boredaproject/emu8086/run_program_test.py
+executable:/home/julien/Documents/localrepositories/github/py8086/texttest/output_run.py
 interpreter:python
+
 
 [view_program]
 *:gedit

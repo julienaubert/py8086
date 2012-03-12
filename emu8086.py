@@ -521,10 +521,10 @@ class BaseOp(Nop):
 
 
 
-class Op_Reg_Immediate(BaseOp):
+class OpRegImmediate(BaseOp):
 
     def __init__(self, instr_length, name, register, immediate, is_word):
-        super(Op_Reg_Immediate, self).__init__(instr_length, name)
+        super(OpRegImmediate, self).__init__(instr_length, name)
         self._im = immediate
         self._reg = register
         self._is_word = is_word
@@ -546,29 +546,29 @@ class Op_Reg_Immediate(BaseOp):
 
     @store_in_reg_op1
     def exec_sub(self, machine_state):
-        return super(Op_Reg_Immediate, self).exec_sub(machine_state)
+        return super(OpRegImmediate, self).exec_sub(machine_state)
 
     @store_in_reg_op1
     def exec_add(self, machine_state):
-        return super(Op_Reg_Immediate, self).exec_add(machine_state)
+        return super(OpRegImmediate, self).exec_add(machine_state)
 
     @store_in_reg_op1
     def exec_adc(self, machine_state):
-        return super(Op_Reg_Immediate, self).exec_adc(machine_state)
+        return super(OpRegImmediate, self).exec_adc(machine_state)
 
     @store_in_reg_op1
     def exec_and(self, machine_state):
-        return super(Op_Reg_Immediate, self).exec_and(machine_state)
+        return super(OpRegImmediate, self).exec_and(machine_state)
 
     @store_in_reg_op1
     def exec_mov(self, machine_state):
         return self._im
 
 
-class Op_Reg_Reg(BaseOp):
+class OpRegReg(BaseOp):
 
     def __init__(self, instr_length, name, register1, register2, is_word):
-        super(Op_Reg_Reg, self).__init__(instr_length, name)
+        super(OpRegReg, self).__init__(instr_length, name)
         self._reg1 = register1
         self._reg2 = register2
         self._is_word = is_word
@@ -589,23 +589,23 @@ class Op_Reg_Reg(BaseOp):
 
     @store_in_reg_op1
     def exec_xor(self, machine_state):
-        return super(Op_Reg_Reg, self).exec_xor(machine_state)
+        return super(OpRegReg, self).exec_xor(machine_state)
 
     @store_in_reg_op1
     def exec_or(self, machine_state):
-        return super(Op_Reg_Reg, self).exec_or(machine_state)
+        return super(OpRegReg, self).exec_or(machine_state)
 
     @store_in_reg_op1
     def exec_and(self, machine_state):
-        return super(Op_Reg_Reg, self).exec_and(machine_state)
+        return super(OpRegReg, self).exec_and(machine_state)
 
     @store_in_reg_op1
     def exec_add(self, machine_state):
-        return super(Op_Reg_Reg, self).exec_add(machine_state)
+        return super(OpRegReg, self).exec_add(machine_state)
 
     @store_in_reg_op1
     def exec_sbb(self, machine_state):
-        return super(Op_Reg_Reg, self).exec_sbb(machine_state)
+        return super(OpRegReg, self).exec_sbb(machine_state)
 
     @store_in_regs_op1_op2
     def exec_xchg(self, machine_state):
@@ -624,10 +624,10 @@ class Op_Reg_Reg(BaseOp):
                                      )
 
 
-class Op_Ea_Immediate(BaseOp):
+class OpEaImmediate(BaseOp):
 
     def __init__(self, instr_length, name, ea, immediate, is_word):
-        super(Op_Ea_Immediate, self).__init__(instr_length, name)
+        super(OpEaImmediate, self).__init__(instr_length, name)
         self._ea = ea
         self._im = immediate
         self._word = is_word
@@ -646,11 +646,11 @@ class Op_Ea_Immediate(BaseOp):
 
     @store_in_ea_op1
     def exec_add(self, machine_state):
-        return super(Op_Ea_Immediate, self).exec_add(machine_state)
+        return super(OpEaImmediate, self).exec_add(machine_state)
 
     @store_in_ea_op1
     def exec_or(self, machine_state):
-        return super(Op_Ea_Immediate, self).exec_or(machine_state)
+        return super(OpEaImmediate, self).exec_or(machine_state)
 
     @store_in_ea_op1
     def exec_mov(self, machine_state):
@@ -664,10 +664,10 @@ class Op_Ea_Immediate(BaseOp):
 
 
 
-class Op_Ea_Reg(BaseOp):
+class OpEaReg(BaseOp):
 
     def __init__(self, instr_length, name, reg, ea, is_word):
-        super(Op_Ea_Reg, self).__init__(instr_length, name)
+        super(OpEaReg, self).__init__(instr_length, name)
         self._ea = ea
         self._name = name
         self._reg = reg
@@ -691,15 +691,15 @@ class Op_Ea_Reg(BaseOp):
 
     @store_in_ea_op1
     def exec_and(self, machine_state):
-        return super(Op_Ea_Reg, self).exec_and(machine_state)
+        return super(OpEaReg, self).exec_and(machine_state)
 
     @store_in_ea_op1
     def exec_add(self, machine_state):
-        return super(Op_Ea_Reg, self).exec_add(machine_state)
+        return super(OpEaReg, self).exec_add(machine_state)
 
     @store_in_ea_op1
     def exec_sub(self, machine_state):
-        return super(Op_Ea_Reg, self).exec_sub(machine_state)
+        return super(OpEaReg, self).exec_sub(machine_state)
 
     def __str__(self):
         return "{0} {3} {1}, {2}".format(self._name,
@@ -708,10 +708,10 @@ class Op_Ea_Reg(BaseOp):
                                            'word' if self._word else 'byte')
 
 
-class Op_Reg_Ea(BaseOp):
+class OpRegEa(BaseOp):
 
     def __init__(self, instr_length, name, reg, ea, is_word):
-        super(Op_Reg_Ea, self).__init__(instr_length, name)
+        super(OpRegEa, self).__init__(instr_length, name)
         self._ea = ea
         self._reg = reg
         self._word = is_word
@@ -736,10 +736,10 @@ class Op_Reg_Ea(BaseOp):
                                            'word' if self._word else 'byte')
 
 
-class Op_Reg(BaseOp):
+class OpReg(BaseOp):
 
     def __init__(self, instr_length, name, reg, is_word):
-        super(Op_Reg, self).__init__(instr_length, name)
+        super(OpReg, self).__init__(instr_length, name)
         self._reg = reg
         self._word = is_word
 
@@ -754,11 +754,11 @@ class Op_Reg(BaseOp):
 
     @store_in_reg_op1
     def exec_dec(self, machine_state):
-        return super(Op_Reg, self).exec_dec(machine_state)
+        return super(OpReg, self).exec_dec(machine_state)
 
     @store_in_reg_op1
     def exec_inc(self, machine_state):
-        return super(Op_Reg, self).exec_inc(machine_state)
+        return super(OpReg, self).exec_inc(machine_state)
 
     def exec_push(self, machine_state):
         machine_state.push_stack(self.op_values(machine_state))
@@ -772,7 +772,7 @@ class Op_Reg(BaseOp):
                                 self._reg.name(self._word))
 
 
-class Op_Disp(BaseOp):
+class OpDisp(BaseOp):
 
     def exec_jz(self, machine_state):
         if machine_state.state().zf():
@@ -808,7 +808,7 @@ class Op_Disp(BaseOp):
 
 
     def __init__(self, instr_length, name, address):
-        super(Op_Disp, self).__init__(instr_length, name)
+        super(OpDisp, self).__init__(instr_length, name)
         self._is_word = True if instr_length == 3 else False
         self._addr = from_2compl(address, self._is_word)
 
@@ -819,7 +819,7 @@ class Op_Disp(BaseOp):
         return "{0} {1}".format(self._name, hex(self._addr))
 
 
-class Op_NoArgs(BaseOp):
+class OpNoArgs(BaseOp):
 
     def exec_hlt(self, machine_state):
         machine_state.halt()
@@ -831,12 +831,12 @@ class Op_NoArgs(BaseOp):
         machine_state.state().set_cf(1)
 
     def __init__(self, instr_length, name):
-        super(Op_NoArgs, self).__init__(instr_length, name)
+        super(OpNoArgs, self).__init__(instr_length, name)
 
 
-class Unknown_Op(BaseOp):
+class UnknownOp(BaseOp):
     def __init__(self):
-        super(Unknown_Op, self).__init__(1, 'UNKNOWN')
+        super(UnknownOp, self).__init__(1, 'UNKNOWN')
 
 
 class Unpacker():
@@ -988,14 +988,14 @@ class DisAsm():
 
         def _mnemonic_i_rm(instr_length, name, is_word, mod, i, rm, unpacker):
             if mod == '11':
-                return Op_Reg_Immediate(instr_length,
+                return OpRegImmediate(instr_length,
                                         name,
                                         Register(rm),
                                         i,
                                         is_word
                                        )
             else:
-                return Op_Ea_Immediate(
+                return OpEaImmediate(
                                instr_length,
                                name,
                                create_ea(mod, rm, unpacker.dispatch(mod, rm)),
@@ -1017,7 +1017,7 @@ class DisAsm():
 
 
         def op_w_acc(name, op_args):
-            return Op_Reg_Immediate(
+            return OpRegImmediate(
                     1 + nr_bytes(op_args.is_word),
                     name,
                     Register('000'),
@@ -1052,24 +1052,24 @@ class DisAsm():
 
         def op_w_mod_rm(name, op_args):
             if op_args.mod == '11':
-                return Op_Reg(2, name, Register(op_args.rm), op_args.is_word)
+                return OpReg(2, name, Register(op_args.rm), op_args.is_word)
             else:
                 raise Exception("Not implemented")
 
         def op_disp_byte(name, op_args):
-            return Op_Disp(2, name, op_args.unpack())
+            return OpDisp(2, name, op_args.unpack())
 
         def op_disp_word(name, op_args):
-            return Op_Disp(3, name, op_args.unpack())
+            return OpDisp(3, name, op_args.unpack())
 
         def op_no_args(name):
-            return Op_NoArgs(1, name)
+            return OpNoArgs(1, name)
 
         def op_reg(name, m):
-            return Op_Reg(1, name, Register(m.reg), is_word=True)
+            return OpReg(1, name, Register(m.reg), is_word=True)
 
         def op_reg_acc(name, m):
-            return Op_Reg_Reg(1, name, Register('000'), Register(m.reg),
+            return OpRegReg(1, name, Register('000'), Register(m.reg),
                               is_word=True
                              )
 
@@ -1078,7 +1078,7 @@ class DisAsm():
         def _mnemonic_rm_r(instr_length, name, to_reg, is_word, mod, rm, r,
                            unpacker):
             if mod == '11':
-                return Op_Reg_Reg(instr_length,
+                return OpRegReg(instr_length,
                                   name,
                                   Register(rm),
                                   Register(r),
@@ -1086,14 +1086,14 @@ class DisAsm():
                                 )
             else:
                 if to_reg:
-                    return Op_Reg_Ea(instr_length,
+                    return OpRegEa(instr_length,
                              name,
                              Register(r),
                              create_ea(mod, rm, unpacker.dispatch(mod, rm)),
                              is_word
                             )
                 else:
-                    return Op_Ea_Reg(instr_length,
+                    return OpEaReg(instr_length,
                              name,
                              Register(r),
                              create_ea(mod, rm, unpacker.dispatch(mod, rm)),
@@ -1202,7 +1202,7 @@ class DisAsm():
         for p, dispatcher in self._dispatch_from_re.iteritems():
             if p.match(instr_bitstr()):
                 return dispatcher(p.match(instr_bitstr()))
-        return Unknown_Op()
+        return UnknownOp()
 
     def instructions(self, program_bytes):
         pc = 0

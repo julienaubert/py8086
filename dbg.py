@@ -101,6 +101,12 @@ class Runner(object):
         return self._runner is None
 
 
+def runner_from_opt(interactive):
+    if interactive:
+        return Runner(InteractiveDebug())
+    else:
+        return Runner(PrintStateAndRun())
+
 def main(program_path, runner):
     with open(program_path, 'rb') as program_file:
         machine = emu8086.Machine(emu8086.State())
@@ -110,15 +116,7 @@ def main(program_path, runner):
         while not runner.done():
             runner.update(machine)
 
-
 if __name__ == '__main__':
-
-    def runner_from_opt(interactive):
-        if interactive:
-            return Runner(InteractiveDebug())
-        else:
-            return Runner(PrintStateAndRun())
-
     main(os.path.join(os.path.dirname(__file__), 'codegolf'),
          runner_from_opt(len(sys.argv) == 1),
         )
