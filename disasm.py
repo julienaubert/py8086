@@ -40,11 +40,11 @@ def main(program):
     addr = 0
     for instr in DisAsm().instructions(program):
         if addr in labels:
-            print "\n{0:>5}:".format(labels[addr])
-        print "{0:<10}{1:<10}".format(hex(addr), instr),
+            print("\n{0:>5}:".format(labels[addr]))
+        print("{0:<10}{1:<10}".format(hex(addr), instr))
         addr += instr.length()
         if (hasattr(instr, 'rel_addr')):
-            print "# {0}".format(labeled(instr.rel_addr() + addr))
+            print("# {0}".format(labeled(instr.rel_addr() + addr)))
         else:
             print
 

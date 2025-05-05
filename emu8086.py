@@ -45,7 +45,7 @@ class Ram():
         self._m = [0] * size
 
     def write(self, start, bytes):
-        for p in xrange(start, start + len(bytes)):
+        for p in range(start, start + len(bytes)):
             self._m[p] = bytes[p]
 
     def write_b(self, start, byte):
@@ -180,7 +180,7 @@ class Registers(object):
                                 hexbyte(self.value(index)),
                                 '' if is_word else '  '
                                )
-                           for index in xrange(8)
+                           for index in range(8)
                         )
 
         return ("IP:{0}\n{1}\n{2}"
@@ -236,7 +236,7 @@ class Machine():
         self._state = state
 
     def load(self, program):
-        self._state.ram().write(0, list(ord(c) for c in program))
+        self._state.ram().write(0, list(program))
         self._ip = 0
 
     def state(self):
@@ -1199,7 +1199,7 @@ class DisAsm():
     def decode_instr(self, bytes):
         def instr_bitstr():
             return ''.join(bin(b)[2:].rjust(8, '0') for b in bytes[:6])
-        for p, dispatcher in self._dispatch_from_re.iteritems():
+        for p, dispatcher in self._dispatch_from_re.items():
             if p.match(instr_bitstr()):
                 return dispatcher(p.match(instr_bitstr()))
         return UnknownOp()

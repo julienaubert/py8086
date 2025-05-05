@@ -45,10 +45,10 @@ class InteractiveDebug(object):
 
 
     def update(self, machine):
-        print machine.state()
+        print(machine.state())
         if machine.state().halted():
             return
-        print emu8086.DisAsm().decode_instr(machine.state().next_instr_bytes())
+        print(emu8086.DisAsm().decode_instr(machine.state().next_instr_bytes()))
         machine.next_instr(emu8086.DisAsm())
         print ("[Enter]:step [R]:run [B 0xadr]:add break "
                    "[M 0xadr]:see RAM [Q]:quit")
@@ -57,7 +57,7 @@ class InteractiveDebug(object):
             if len(v) == 0:
                 return
             elif v[0] == 'M':
-                print see_ram(machine.state().ram(), int(v[1:], 16))
+                print(see_ram(machine.state().ram(), int(v[1:], 16)))
             elif v[0] == 'B':
                 self._breaks.append(int(v[1:], 16))
             elif v[0] == 'R':
@@ -78,8 +78,8 @@ class PrintStateAndRun(object):
 
     def update(self, machine):
         print
-        print machine.state()
-        print emu8086.DisAsm().decode_instr(machine.state().next_instr_bytes())
+        print(machine.state())
+        print(emu8086.DisAsm().decode_instr(machine.state().next_instr_bytes()))
         machine.next_instr(emu8086.DisAsm())
         if machine.state().halted():
             self._next = None
