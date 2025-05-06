@@ -30,6 +30,6 @@ class ConsoleDisplay():
 
 
     def refresh(self, vram):
-        for y, x in product(xrange(self.rows), xrange(self.cols)):
+        for y, x in product(range(self.rows), range(self.cols)):
             self.set_char(x, y, vram[y * self.cols + x])
         self._win.refresh()
