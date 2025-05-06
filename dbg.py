@@ -53,7 +53,7 @@ class InteractiveDebug(object):
         print ("[Enter]:step [R]:run [B 0xadr]:add break "
                    "[M 0xadr]:see RAM [Q]:quit")
         while True:
-            v = raw_input()
+            v = input()
             if len(v) == 0:
                 return
             elif v[0] == 'M':
